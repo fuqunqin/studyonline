@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="upLoadFile"
+			type="cn.edu.zust.web.form.UpLoadFileForm">
+		</form-bean>
+	</form-beans>
+	<action-mappings>
+		<action path="/checkUser"
+			type="cn.edu.zust.web.action.ChatOnlineAction"
+			parameter="checkUser">
+		</action>
+		<action path="/chat" parameter="chat"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/chat/chatOnline.jsp"></forward>
+		</action>
+		<action path="/doInput"
+			type="cn.edu.zust.web.action.ChatOnlineAction"
+			parameter="doInput">
+		</action>
+		<action path="/doLayout"
+			type="cn.edu.zust.web.action.ChatOnlineAction"
+			parameter="doLayout">
+		</action>
+		<action path="/doLogin"
+			type="cn.edu.zust.web.action.ChatOnlineAction"
+			parameter="doLogin">
+		</action>
+		<action path="/getUser"
+			type="cn.edu.zust.web.action.ChatOnlineAction"
+			parameter="getUser">
+		</action>
+		<!-- 管理员登录 -->
+		<action path="/adminLogin" parameter="adminLogin"
+			input="/adminLogin.jsp" validate="true"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<exception type="cn.edu.zust.exception.LoginException"
+				key="login.error">
+			</exception>
+			<forward name="validateWrong" path="/adminLogin.jsp"></forward>
+			<forward name="adminLoginOk" path="/admin/main.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 管理员退出 -->
+		<action path="/adminExit" parameter="adminExit"
+			type="cn.edu.zust.web.action.AdminAction">
+		</action>
+		<!-- 其他管理 -->
+		<!-- 查看状态 -->
+		<action path="/admin/queryStatuses" parameter="adminQueryStatus"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryStatusOk"
+				path="/admin/othermanager/managerStatus.jsp">
+			</forward>
+		</action>
+		<!-- 查看密保问题 -->
+		<action path="/admin/querySecurities"
+			parameter="adminQuerySecurities"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQuerySecuritiesOk"
+				path="/admin/othermanager/managerSecurity.jsp">
+			</forward>
+		</action>
+		<!-- 添加密保问题 -->
+		<action path="/admin/addSecurity" parameter="adminAddSecurity"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddSecurityOk"
+				path="/admin/querySecurities.do">
+			</forward>
+		</action>
+		<!-- 查看证件类型 -->
+		<action path="/admin/queryCertificate"
+			parameter="adminQueryCertificates"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryCertificatesOk"
+				path="/admin/othermanager/managerCertificate.jsp">
+			</forward>
+		</action>
+		<!-- 添加证件类型 -->
+		<action path="/admin/addCertificate"
+			parameter="adminAddCertificate"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddCertificateOk"
+				path="/admin/queryCertificate.do">
+			</forward>
+		</action>
+		<!-- 查询学科 -->
+		<action path="/admin/querySubjects"
+			parameter="adminQuerySubjects"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQuerySubjectsOk"
+				path="/admin/frontiermanager/subjectmanager/managerSubject.jsp">
+			</forward>
+		</action>
+		<!-- 添加学科 -->
+		<action path="/admin/addSubject" parameter="adminAddSubject"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddSubjectOk"
+				path="/admin/querySubjects.do">
+			</forward>
+		</action>
+		<!-- 查询所有学科动态类型 -->
+		<action path="/admin/queryFrontierTypes"
+			parameter="adminQueryFrontierTypes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryFrontierTypesOk"
+				path="/admin/frontiermanager/frontiertypemanager/managerFrontierType.jsp">
+			</forward>
+		</action>
+		<!-- 添加学科动态类型 -->
+		<action path="/admin/addFrontierType"
+			parameter="adminAddFrontierType"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddFrontierType"
+				path="/admin/queryFrontierTypes.do">
+			</forward>
+		</action>
+		<!-- 添加学科动态 -->
+		<action path="/admin/addFrontier" parameter="adminAddFrontier"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddFrontierOk"
+				path="/admin/frontiermanager/frontiermanager/queryFrontier.jsp">
+			</forward>
+		</action>
+		<!-- 查询学科动态 -->
+		<action path="/admin/queryFrontieres"
+			parameter="adminQueryFrontieres"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryFrontieresOk"
+				path="/admin/frontiermanager/frontiermanager/queryFrontiers.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个学科 -->
+		<action path="/admin/queryFrontier"
+			parameter="adminQueryFrontier"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryFrontierOk"
+				path="/admin/frontiermanager/frontiermanager/queryFrontier.jsp">
+			</forward>
+		</action>
+		<!-- 修改单个学科 -->
+		<action path="/admin/updateFrontier"
+			parameter="adminQueryFrontier"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryFrontierOk"
+				path="/admin/frontiermanager/frontiermanager/modifyFrontier.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyFrontier"
+			parameter="adminModifyFrontier"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminModifyFrontier"
+				path="/admin/frontiermanager/frontiermanager/queryFrontier.jsp">
+			</forward>
+		</action>
+		<!-- 删除单个学科 -->
+		<action path="/admin/deleteFrontier"
+			parameter="adminDeleteFrontier"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="deleteFrontierOk"
+				path="/admin/queryFrontieres.do">
+			</forward>
+		</action>
+		<!-- 查询科研成果 -->
+		<action path="/admin/queryWins" parameter="adminQueryWins"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryWins"
+				path="/admin/frontiermanager/winmanager/queryWins.jsp">
+			</forward>
+		</action>
+		<!-- 添加科研成果 -->
+		<action path="/admin/addWin" parameter="adminAddWin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddWinOk"
+				path="/admin/frontiermanager/winmanager/queryWin.jsp">
+			</forward>
+		</action>
+		<!-- 删除科研成果 -->
+		<action path="/admin/deleteWins" parameter="adminDeleteWins"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminDeleteWinsOk"
+				path="/admin/queryWins.do">
+			</forward>
+		</action>
+		<!-- 查看单个科研成果 -->
+		<action path="/admin/queryWin" parameter="adminQueryWin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryWinOk"
+				path="/admin/frontiermanager/winmanager/queryWin.jsp">
+			</forward>
+		</action>
+		<!-- 修改单个科研成果 -->
+		<action path="/admin/updateWin" parameter="adminQueryWin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryWinOk"
+				path="/admin/frontiermanager/winmanager/modifyWin.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyWin" parameter="adminModifyWin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminModifyWinOk"
+				path="/admin/frontiermanager/winmanager/queryWin.jsp">
+			</forward>
+		</action>
+		<!-- 查询图书推荐 -->
+		<action path="/admin/querySutraBooks"
+			parameter="adminQuerySutraBooks"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQuerySutraBooks"
+				path="/admin/frontiermanager/sutrabookmanager/querySutraBooks.jsp">
+			</forward>
+		</action>
+		<!-- 添加经典图书推荐 -->
+		<action path="/admin/addSutraBook" parameter="adminAddSutraBook"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddSutraBook"
+				path="/admin/frontiermanager/sutrabookmanager/querySutraBook.jsp">
+			</forward>
+		</action>
+		<!-- 删除经典图书推荐 -->
+		<action path="/admin/deleteSutraBooks"
+			parameter="adminDeleteSutraBooks"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminDeleteSutraBooks"
+				path="/admin/querySutraBooks.do">
+			</forward>
+		</action>
+		<!-- 查询经典图书推荐 -->
+		<action path="/admin/querySutraBook"
+			parameter="adminQuerySutraBook"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQuerySutraBook"
+				path="/admin/frontiermanager/sutrabookmanager/querySutraBook.jsp">
+			</forward>
+		</action>
+		<!-- 修改经典图书推荐 -->
+		<action path="/admin/updateSutraBook"
+			parameter="adminQuerySutraBook"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQuerySutraBook"
+				path="/admin/frontiermanager/sutrabookmanager/modifySutraBook.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifySutraBook"
+			parameter="adminModifySutraBook"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminModifySutraBook"
+				path="/admin/frontiermanager/sutrabookmanager/querySutraBook.jsp">
+			</forward>
+		</action>
+		<!-- 查询共享类别 -->
+		<action path="/admin/queryShareTypes"
+			parameter="adminQueryShareTypes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryShareTypesOk"
+				path="/admin/sharemanager/sharetypemanager/managerShareType.jsp">
+			</forward>
+		</action>
+		<!-- 添加资料共享类别 -->
+		<action path="/admin/addShareType" parameter="adminAddShareType"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddShareTypeOk"
+				path="/admin/queryShareTypes.do">
+			</forward>
+		</action>
+		<!-- 查询资料共享 -->
+		<action path="/admin/queryShares" parameter="adminQueryShares"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQuerySharesOk"
+				path="/admin/sharemanager/sharemanager/queryShares.jsp">
+			</forward>
+		</action>
+		<!-- 添加资料共享 -->
+		<action path="/admin/addShare" parameter="adminAddShare"
+			name="upLoadFile"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddShareFalse"
+				path="/admin/sharemanager/sharemanager/queryShare.jsp">
+			</forward>
+			<forward name="adminAddShareOk"
+				path="/admin/sharemanager/sharemanager/queryShare.jsp">
+			</forward>
+		</action>
+		<!-- 查询资料共享 -->
+		<action path="/admin/queryShare" parameter="adminQueryShare"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="amdinQueryShareOk"
+				path="/admin/sharemanager/sharemanager/queryShare.jsp">
+			</forward>
+		</action>
+		<!-- 下载资料共享 -->
+		<action path="/admin/downLoadShare"
+			parameter="adminDownLoadShare"
+			type="cn.edu.zust.web.action.ShareAction">
+		</action>
+		<!-- 修改共享资料 -->
+		<action path="/admin/updateShare" parameter="adminQueryShare"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="amdinQueryShareOk"
+				path="/admin/sharemanager/sharemanager/modifyShare.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyShare" parameter="adminModifyShare"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminModifyShareOk"
+				path="/admin/sharemanager/sharemanager/queryShare.jsp">
+			</forward>
+		</action>
+		<!-- 删除资料共享 -->
+		<action path="/admin/deleteShares" parameter="adminDeleteShares"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminDeleteSharesOk"
+				path="/admin/queryShares.do">
+			</forward>
+		</action>
+		<!-- 查询考研部落类别 -->
+		<action path="/admin/queryPubmedTypes"
+			parameter="adminQueryPubmedTypes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryPubmedTypesOk"
+				path="/admin/pubmedmanager/pubmedtypemanager/managerPubmedType.jsp">
+			</forward>
+		</action>
+		<!-- 添加考研部落类别 -->
+		<action path="/admin/addPubmedType"
+			parameter="adminAddPubmedType"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddPubmedTypeOk"
+				path="/admin/queryPubmedTypes.do">
+			</forward>
+		</action>
+		<!-- 查询考研部落信息 -->
+		<action path="/admin/queryPubmedTribes"
+			parameter="adminQueryPubmedTribes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryPubmedTribesOk"
+				path="/admin/pubmedmanager/pubmedtribemanager/queryPubmedTribes.jsp">
+			</forward>
+		</action>
+		<!-- 添加考研部落信息 -->
+		<action path="/admin/addPubmedTribe"
+			parameter="adminAddPubmedTribe"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddPubmedTribeOk"
+				path="/admin/pubmedmanager/pubmedtribemanager/queryPubmedTribe.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个考研部落信息 -->
+		<action path="/admin/queryPubmedTribe"
+			parameter="adminQueryPubmedTribe"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryPubmedTribeOk"
+				path="/admin/pubmedmanager/pubmedtribemanager/queryPubmedTribe.jsp">
+			</forward>
+		</action>
+		<!-- 修改单个考研部落信息 -->
+		<action path="/admin/updatePubmedTribe"
+			parameter="adminQueryPubmedTribe"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryPubmedTribeOk"
+				path="/admin/pubmedmanager/pubmedtribemanager/modifyPubmedTribe.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyPubmedTribe"
+			parameter="adminModifyPubmedTribe"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminModifyPubmedTribeOk"
+				path="/admin/pubmedmanager/pubmedtribemanager/queryPubmedTribe.jsp">
+			</forward>
+		</action>
+		<!-- 删除考研部落信息 -->
+		<action path="/admin/deletePubmedTribes"
+			parameter="adminDeletePubmedTribes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminDeletePubmedTribesOk"
+				path="/admin/queryPubmedTribes.do">
+			</forward>
+		</action>
+		<!-- 查询资格类别 -->
+		<action path="/admin/queryQualificationTypes"
+			parameter="adminQueryQualificationTypes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminQueryQualificationTypesOk"
+				path="/admin/qualificationmanager/qualificationtypemanager/managerQualificationType.jsp">
+			</forward>
+		</action>
+		<!-- 添加资格类别 -->
+		<action path="/admin/addQualificationType"
+			parameter="adminAddQualificationType"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddQualificationTypeOk"
+				path="/admin/queryQualificationTypes.do">
+			</forward>
+		</action>
+		<!-- 查询资格认证信息 -->
+		<action path="/admin/queryAccreditations"
+			parameter="adminQueryAccreditations"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/accreditationmanager/queryAccreditations.jsp">
+			</forward>
+		</action>
+		<!-- 添加资格认证信息 -->
+		<action path="/admin/addAccreditation"
+			parameter="adminAddAccreditation"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/accreditationmanager/queryAccreditation.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个资格认证信息 -->
+		<action path="/admin/queryAccreditation"
+			parameter="adminQueryAccreditation"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/accreditationmanager/queryAccreditation.jsp">
+			</forward>
+		</action>
+		<!-- 修改单个资格认证 -->
+		<action path="/admin/updateAccreditation"
+			parameter="adminQueryAccreditation"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/accreditationmanager/modifyAccreditation.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyAccreditation"
+			parameter="adminModifyAccreditation"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/accreditationmanager/queryAccreditation.jsp">
+			</forward>
+		</action>
+		<!-- 删除单个资格认证 -->
+		<action path="/admin/deleteAccreditations"
+			parameter="adminDeleteAcciditations"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryAccreditations.do">
+			</forward>
+		</action>
+		<!-- 查询资格考试信息 -->
+		<action path="/admin/queryCertificateExams"
+			parameter="adminQueryCertificateExams"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/certificateexammanager/queryCertificateExams.jsp">
+			</forward>
+		</action>
+		<!-- 添加资格考试信息 -->
+		<action path="/admin/addCertificateExam"
+			parameter="adminAddCertificateExam"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryCertificateExams.do">
+			</forward>
+		</action>
+		<!-- 查询资格考试信息 -->
+		<action path="/admin/queryCertificateExam"
+			parameter="adminQueryCertificateExam"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/certificateexammanager/queryCertificateExam.jsp">
+			</forward>
+		</action>
+		<!-- 删除资格考试信息 -->
+		<action path="/admin/deleteCertificateExams"
+			parameter="adminDeleteCertificateExams"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryCertificateExams.do">
+			</forward>
+		</action>
+		<!-- 在公司做的部分 -->
+		<!-- 查询资格测试信息 -->
+		<action path="/admin/queryTests" parameter="adminQueryTests"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/testmanager/queryTests.jsp">
+			</forward>
+		</action>
+		<!-- 添加资格测试信息 -->
+		<action path="/admin/addTest" parameter="adminAddTest"
+			name="upLoadFile"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/testmanager/queryTest.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个资格测试信息 -->
+		<action path="/admin/queryTest" parameter="adminQueryTest"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/testmanager/queryTest.jsp">
+			</forward>
+		</action>
+		<!-- 下载资格测试信息 -->
+		<action path="/admin/downLoadTest" parameter="adminDownLoadTest"
+			type="cn.edu.zust.web.action.TestAction">
+		</action>
+		<!-- 修改资格测试信息 -->
+		<action path="/admin/updateTest" parameter="adminQueryTest"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/testmanager/modifyTest.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyTest" parameter="adminModifyTest"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/qualificationmanager/testmanager/queryTest.jsp">
+			</forward>
+		</action>
+		<!-- 删除资格测试信息 -->
+		<action path="/admin/deleteTests" parameter="adminDeleteTests"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/admin/queryTests.do"></forward>
+		</action>
+		<!-- 查询英语学习 -->
+		<action path="/admin/queryEnglishStudies"
+			parameter="adminQueryEnglishStudies"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/englishstudymanager/queryEnglishStudies.jsp">
+			</forward>
+		</action>
+		<!-- 添加英语学习 -->
+		<action path="/admin/addEnglishStudy"
+			parameter="adminAddEnglishStudy"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/englishstudymanager/queryEnglishStudy.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个英语学习 -->
+		<action path="/admin/queryEnglishStudy"
+			parameter="adminQueryEnglishStudy"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/englishstudymanager/queryEnglishStudy.jsp">
+			</forward>
+		</action>
+		<!-- 修改英语学习 -->
+		<action path="/admin/updateEnglishStudy"
+			parameter="adminQueryEnglishStudy"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/englishstudymanager/modifyEnglishStudy.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyEnglishStudy"
+			parameter="adminModifyEnglishStudy"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/englishstudymanager/queryEnglishStudy.jsp">
+			</forward>
+		</action>
+		<!-- 删除英语学习 -->
+		<action path="/admin/deleteEnglishStudies"
+			parameter="adminDeleteEnglishStudies"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryEnglishStudies.do">
+			</forward>
+		</action>
+		<!-- 查询在线听力 -->
+		<action path="/admin/queryOnlineListenings"
+			parameter="adminQueryOnlineListenings"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/onlinelisteningmanager/queryOnlineListenings.jsp">
+			</forward>
+		</action>
+		<!-- 添加在线听力 -->
+		<action path="/admin/addOnlineListening" name="upLoadFile"
+			parameter="adminAddOnlineListening"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/onlinelisteningmanager/queryOnlineListening.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个在线听力 -->
+		<action path="/admin/queryOnlineListening"
+			parameter="adminQueryOnlineListening"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/onlinelisteningmanager/queryOnlineListening.jsp">
+			</forward>
+		</action>
+		<!-- 修改在线听力 -->
+		<action path="/admin/updateOnlineListening"
+			parameter="adminQueryOnlineListening"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/onlinelisteningmanager/modifyOnlineListening.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyOnlineListening"
+			parameter="adminModifyOnlineListening"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/onlinelisteningmanager/queryOnlineListening.jsp">
+			</forward>
+		</action>
+		<!-- 删除在线听力 -->
+		<action path="/admin/deleteOnlineListenings"
+			parameter="adminDeleteOnlineListenings"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryOnlineListenings.do">
+			</forward>
+		</action>
+		<!-- 查询真题欣赏 -->
+		<action path="/admin/queryExamAppreciates"
+			parameter="adminQueryExamAppreciates"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/examappreciatemanager/queryExamAppreciates.jsp">
+			</forward>
+		</action>
+		<!-- 添加真题欣赏 -->
+		<action path="/admin/addExamAppreciate"
+			parameter="adminAddExamAppreciate"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/examappreciatemanager/queryExamAppreciate.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个真题欣赏 -->
+		<action path="/admin/queryExamAppreciate"
+			parameter="adminQueryExamAppreciate"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/examappreciatemanager/queryExamAppreciate.jsp">
+			</forward>
+		</action>
+		<!-- 修改真题欣赏 -->
+		<action path="/admin/updateExamAppreciate"
+			parameter="adminQueryExamAppreciate"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/examappreciatemanager/modifyExamAppreciate.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyExamAppreciate"
+			parameter="adminModifyExamAppreciate"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/englishstudymanager/examappreciatemanager/queryExamAppreciate.jsp">
+			</forward>
+		</action>
+		<!-- 删除真题欣赏 -->
+		<action path="/admin/deleteExamAppreciates"
+			parameter="adminDeleteExamAppreciates"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryExamAppreciates.do">
+			</forward>
+		</action>
+		<!-- 查看兴趣小组 -->
+		<action path="/admin/queryInterestGroups"
+			parameter="adminQueryInterestGroups"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/interestgroup/queryInterestGroups.jsp">
+			</forward>
+		</action>
+		<!-- 删除兴趣小组 -->
+		<action path="/admin/deleteGroup" parameter="jieSanGroup"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/queryInterestGroups.do">
+			</forward>
+		</action>
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 查询用户 -->
+		<action path="/admin/queryUsers" parameter="adminQueryUsers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/usermanager/queryUsers.jsp">
+			</forward>
+		</action>
+		<!-- 添加用户 -->
+		<action path="/admin/addUser" parameter="adminAddUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/usermanager/queryUser.jsp">
+			</forward>
+		</action>
+		<!-- 查询单个用户 -->
+		<action path="/admin/queryUser" parameter="adminQueryUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/usermanager/queryUser.jsp">
+			</forward>
+		</action>
+		<!-- 修改单个用户 -->
+		<action path="/admin/updateUser" parameter="adminQueryUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/usermanager/modifyUser.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyUser" parameter="adminModifyUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/usermanager/queryUser.jsp">
+			</forward>
+		</action>
+		<!-- 删除用户 -->
+		<action path="/admin/deleteUsers" parameter="adminDeleteUsers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/admin/queryUsers.do"></forward>
+		</action>
+		<!-- 激活用户 -->
+		<action path="/admin/activeUsers" parameter="adminActiveUsers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/admin/queryUsers.do"></forward>
+		</action>
+		<!-- 查询管理员 -->
+		<action path="/admin/queryAdmins" parameter="adminQueryAdmins"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/adminmanager/queryAdmins.jsp">
+			</forward>
+		</action>
+		<!-- 添加管理员 -->
+		<action path="/admin/addAdmin" parameter="adminAddAdmin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/adminmanager/queryAdmin.jsp">
+			</forward>
+		</action>
+		<!-- 查看单个管理员 -->
+		<action path="/admin/queryAdmin" parameter="adminQueryAdmin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/adminmanager/queryAdmin.jsp">
+			</forward>
+		</action>
+		<!-- 禁用管理员 -->
+		<action path="/admin/deleteAdmin" parameter="adminDeleteAdmin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/admin/queryAdmins.do"></forward>
+		</action>
+		<!-- 激活管理员 -->
+		<action path="/admin/activeAdmin" parameter="adminActiveAdmin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/admin/queryAdmins.do"></forward>
+		</action>
+		<!-- 修改管理员 -->
+		<action path="/admin/updateAdmin" parameter="adminQueryAdmin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/adminmanager/modifyAdmin.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyAdmin" parameter="adminModifyAdmin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/adminmanager/queryAdmin.jsp">
+			</forward>
+		</action>
+		<!-- 修改自身基本信息 -->
+		<action path="/admin/modifySelfBase"
+			parameter="adminModifySelfBase"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/admin/selfmanager/querySelf.jsp">
+			</forward>
+		</action>
+		<!-- 修改自身安全信息 -->
+		<action path="/admin/modifySelfSafe"
+			parameter="adminModifySelfSelf"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="error" path="/sbcz.jsp"></forward>
+			<forward name="success" path="/cgcz.jsp"></forward>
+		</action>
+		<!-- 找回密码 -->
+		<action path="/findPassword" parameter="findPassword"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/findpassword/findPassword.jsp">
+			</forward>
+		</action>
+		<action path="/findPassword2" parameter="findPassword2"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/cgcz.jsp"></forward>
+		</action>
+		<!-- 前台用户自服务 -->
+		<!-- 用户登录 -->
+		<action path="/userLogin" parameter="userLogin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/index.jsp" redirect="true"></forward>
+		</action>
+		<!-- 用户注销 -->
+		<action path="/user/logout" parameter="userLogout"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/index.jsp" redirect="true"></forward>
+		</action>
+		<!-- 用户退出 -->
+		<action path="/user/exit" parameter="exit"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/index.jsp" redirect="true"></forward>
+		</action>
+		<!-- 消息标记为已读 -->
+		<action path="/user/markUserMessage" parameter="markUserMessage"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user/userMessages.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/user/modifySelf" parameter="modifySelf"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user/modifyReturnMessage.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看用户自身共享 -->
+		<action path="/user/queryUserShares" parameter="queryUserShares"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user/querySelfShares.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/user/addShare" parameter="adminAddShare"
+			name="upLoadFile"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminAddShareFalse"
+				path="/user/addUserShares.jsp" redirect="true">
+			</forward>
+			<forward name="adminAddShareOk"
+				path="/user/modifyReturnMessage.jsp">
+			</forward>
+		</action>
+		<!-- 用户下载 -->
+		<action path="/user/downLoad" parameter="userDownLoad"
+			type="cn.edu.zust.web.action.UserAction">
+		</action>
+		<!-- 用户删除自己的共享 -->
+		<action path="/user/deleteShares" parameter="adminDeleteShares"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminDeleteSharesOk"
+				path="/user/queryUserShares.do">
+			</forward>
+		</action>
+		<!-- 用户修改自己的共享 -->
+		<action path="/user/updateShare" parameter="adminQueryShare"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="amdinQueryShareOk"
+				path="/user/modifyShare.jsp" redirect="true">
+			</forward>
+		</action>
+		<action path="/user/modifyShare" parameter="adminModifyShare"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="adminModifyShareOk"
+				path="/user/queryUserShares.do">
+			</forward>
+		</action>
+		<action path="/register" parameter="adminAddUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/index.jsp" redirect="true">
+			</forward>
+		</action>
+		<!-- 添加兴趣小组 -->
+		<action path="/user/addInterestGroup"
+			parameter="saveInterestGroup"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/user/queryInterestGroups.do">
+			</forward>
+		</action>
+		<!-- 查询兴趣小组 -->
+		<action path="/user/queryInterestGroups"
+			parameter="querySelfGroups"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user/queryInterestGroups.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看小组成员 -->
+		<action path="/user/queryGroupUsers" parameter="queryGroupUsers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user/queryGroupUsers.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 修改小组信息 -->
+		<action path="/user/modifyGroup" parameter="queryGroupUsers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user/modifyGroup.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/user/updateGroup" parameter="modifyGroupUsers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/user/queryInterestGroups.do">
+			</forward>
+		</action>
+		<!-- 加入兴趣小组 -->
+		<action path="/user/jiaRuGroup" parameter="jiaRuGroup"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+		</action>
+		<!-- 移除兴趣小组成员 -->
+		<action path="/user/removeGroupUser"
+			parameter="adminRemoveGroupUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+		</action>
+		<!-- 解散小组 -->
+		<action path="/user/jieSanGroup" parameter="jieSanGroup"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/user/queryInterestGroups.do">
+			</forward>
+		</action>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 查看更多 -->
+		<!-- 查看学科前沿 -->
+		<action path="/querySubjects" parameter="querySubjects"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/subjects.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/queryFrontiers" parameter="queryFrontiers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/subjects.jsp#div11"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/queryWins" parameter="queryWins"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/subjects.jsp#div22"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/querySutraBooks" parameter="querySubtraBooks"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/subjects.jsp#div33"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 考研部落 -->
+		<action path="/queryPubmedTribes" parameter="queryPubmedTribes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/pubmedTribes.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 资格认证 -->
+		<action path="/queryQualifications"
+			parameter="queryQualifications"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/qualifications.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/queryAccreditations"
+			parameter="queryAccreditations"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/more/qualifications.jsp#div11" redirect="true">
+			</forward>
+		</action>
+		<action path="/queryCertificateExams"
+			parameter="queryCertificateExams"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/more/qualifications.jsp#div22" redirect="true">
+			</forward>
+		</action>
+		<action path="/queryTests" parameter="queryTests"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success"
+				path="/more/qualifications.jsp#div33" redirect="true">
+			</forward>
+		</action>
+		<!-- 英语学习 -->
+		<action path="/queryEnglishes" parameter="queryEnglishes"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/englishes.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/queryEnglishStudies"
+			parameter="queryEnglishStudies"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/englishes.jsp#div11"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/queryOnlineListenings"
+			parameter="queryOnlineListenings"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/englishes.jsp#div22"
+				redirect="true">
+			</forward>
+		</action>
+		<action path="/queryExamAppreciates"
+			parameter="queryExamAppreciates"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/englishes.jsp#div33"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 资料共享 -->
+		<action path="/queryShares" parameter="queryShares"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/shares.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 用户查看单个学科动态 -->
+		<action path="/queryFrontier" parameter="queryFrontier"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/frontier.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 用户查看单个科研成果 -->
+		<action path="/queryWin" parameter="queryWin"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/win.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 用户查看单个经典图书 -->
+		<action path="/querySutraBook" parameter="querySutraBook"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/sutraBook.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看考研部落 -->
+		<action path="/queryPubmedTribe" parameter="queryPubmedTribe"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/pubmedTribe.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!--查看资格认证动态 -->
+		<action path="/queryAccreditation"
+			parameter="queryAccreditation"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/accreditation.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看资格考试信息 -->
+		<action path="/queryCertificateExam"
+			parameter="queryCertificateExam"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/certificateExam.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看资格试题测试 -->
+		<action path="/queryTest" parameter="queryTest"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/test.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看英语学习技巧及方法 -->
+		<action path="/queryEnglishStudy" parameter="queryEnglishStudy"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/englishStudy.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看在线听力 -->
+		<action path="/queryOnlineListening"
+			parameter="queryOnlineListening"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/onlineListening.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看真题欣赏 -->
+		<action path="/queryExamAppreciate"
+			parameter="queryExamAppreciate"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/examAppreciate.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 资料共享 -->
+		<action path="/queryShare" parameter="queryShare"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/single/share.jsp"
+				redirect="true">
+			</forward>
+		</action>
+		<!-- 查看兴趣小组 -->
+		<action path="/queryInterestGroups"
+			parameter="adminQueryInterestGroups"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/interestGroups.jsp"
+				redirect="true">
+			</forward>
+		</action>
+
+
+	</action-mappings>
+
+	<!-- 错误验证 -->
+	<message-resources parameter="cn.edu.zust.res.messageRes"></message-resources>
+</struts-config>

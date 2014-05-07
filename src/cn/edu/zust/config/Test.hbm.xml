@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.Test" table="S_TEST">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_test_seq</param>
+			</generator>
+		</id>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" length="100" />
+		</property>
+		<many-to-one name="qualificationType" column="QUALIFICATION_ID"
+			lazy="false" />
+		<property name="uploadeDate" type="java.util.Date">
+			<column name="UPLOADE_DATE" length="7" />
+		</property>
+		<property name="uploadeUrl" type="java.lang.String">
+			<column name="UPLOADE_URL" length="100" />
+		</property>
+	</class>
+</hibernate-mapping>

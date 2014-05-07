@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">
+			oracle.jdbc.driver.OracleDriver
+		</property>
+		<property name="connection.url">
+			jdbc:oracle:thin:@localhost:1521:xe
+		</property>
+		<property name="connection.username">system</property>
+		<property name="connection.password">system</property>
+		<property name="dialect">
+			org.hibernate.dialect.Oracle9Dialect
+		</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="current_session_context_class">thread</property>
+		<!-- 
+			<mapping resource="cn/edu/zust/config/Accreditation.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Admin.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Certificate.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/CertificateExam.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/EnglishStudy.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/ExamAppreciate.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Frontier.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/FrontierType.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/InterestGroup.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Logout.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Menu.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/OnlineListening.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/PubmedType.hbm.xml" />
+			<mapping
+			resource="cn/edu/zust/config/QualificationType.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Security.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Share.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/ShareType.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Status.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Subject.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/SutraBook.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/User.hbm.xml" />
+			<mapping resource="cn/edu/zust/config/Win.hbm.xml" />
+		-->
+		<mapping resource="cn/edu/zust/config/UserMessage.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

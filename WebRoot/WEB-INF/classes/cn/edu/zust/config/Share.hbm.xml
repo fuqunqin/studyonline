@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.Share" table="S_SHARE">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_share_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="subject" class="cn.edu.zust.entity.Subject"
+			lazy="false">
+			<column name="SUBJECT_ID" precision="22" scale="0" />
+		</many-to-one>
+		<many-to-one name="shareType" lazy="false"
+			class="cn.edu.zust.entity.ShareType">
+			<column name="SHARE_TYPE_ID" precision="22" scale="0" />
+		</many-to-one>
+		<many-to-one name="user" class="cn.edu.zust.entity.User"
+			lazy="false">
+			<column name="SHARE_USER_ID" precision="22" scale="0" />
+		</many-to-one>
+		<property name="shareName" type="string">
+			<column name="SHARE_NAME" length="100"></column>
+		</property>
+		<property name="shareUrl" type="string">
+			<column name="SHARE_URL" length="1000" />
+		</property>
+		<property name="shareDate" type="date">
+			<column name="SHARE_DATE" length="7" />
+		</property>
+	</class>
+</hibernate-mapping>

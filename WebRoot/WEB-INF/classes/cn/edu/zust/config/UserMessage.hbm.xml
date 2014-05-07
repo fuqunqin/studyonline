@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.UserMessage"
+		table="S_USER_MESSAGE">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_user_message_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="user" class="cn.edu.zust.entity.User"
+			lazy="false">
+			<column name="USER_ID" />
+		</many-to-one>
+		<property name="publishDate" type="timestamp">
+			<column name="PUBLISH_DATE" length="15" />
+		</property>
+		<property name="deleteFlag" type="string">
+			<column name="DELETE_FLAG" length="4" />
+		</property>
+		<property name="readFlag" type="string">
+			<column name="READ_FLAG" length="4" />
+		</property>
+		<property name="message" type="string">
+			<column name="MESSAGE" length="2000" />
+		</property>
+	</class>
+</hibernate-mapping>

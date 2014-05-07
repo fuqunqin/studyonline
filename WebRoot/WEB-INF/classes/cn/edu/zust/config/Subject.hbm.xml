@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.Subject" table="S_SUBJECT">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_subject_seq</param>
+			</generator>
+		</id>
+		<property name="subjectName" type="string">
+			<column name="SUBJECT_NAME" length="100" />
+		</property>
+	</class>
+</hibernate-mapping>

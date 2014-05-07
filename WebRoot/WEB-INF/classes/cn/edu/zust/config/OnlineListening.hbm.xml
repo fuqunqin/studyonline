@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.OnlineListening"
+		table="S_ONLINE_LISTENING">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_onlinelistening_seq</param>
+			</generator>
+		</id>
+		<property name="title" type="string">
+			<column name="TITLE" length="100" />
+		</property>
+		<property name="listenUrl" type="string">
+			<column name="LISTEN_URL" length="100" />
+		</property>
+		<property name="publishDate" type="date">
+			<column name="PUBLISH_DATE" length="7" />
+		</property>
+	</class>
+</hibernate-mapping>

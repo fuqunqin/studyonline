@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+		<style type="text/css">
+/*主体宽度设置↓*/
+.width {
+	width: 760;
+}
+
+/*左右边框架↓*/
+.left {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/left.gif');
+	width: 4px
+}
+
+.right {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/right.gif');
+	width: 4px
+}
+
+/*左边标题框架↓*/
+.lefttopleft {
+	background:
+		url('${pageContext.request.contextPath}/mainimages/lanmutopcenter.gif')
+		;
+	width: 182px;
+	height: 30px;
+}
+
+.lefttopcenter {
+	background:
+		url('${pageContext.request.contextPath}/mainimages/lanmutopcenter.gif')
+		;
+	width: 182px;
+	height: 30px;
+	color: #FFF
+}
+
+.lefttopright {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/lanmutopright.gif')
+		;
+	width: 6px;
+	height: 30px;
+}
+
+/*左边内容框架↓*/
+.leftcenterleft {
+	background: #C2CCE3;
+	width: 184px;
+}
+
+.leftcentercenter {
+	background: #C2CCE3;
+	width: 184px;
+}
+
+.leftcenterright {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/left.gif');
+	width: 4px;
+}
+
+/*左边底部框架↓*/
+.leftfootleft {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/footcenter.gif');
+	height: 4px;
+	width: 184px
+}
+
+.leftfootcenter {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/footcenter.gif');
+	height: 4px;
+	width: 184px
+}
+
+.leftfootright {
+	background:
+		//url('${pageContext.request.contextPath}/mainimages/footright.gif');
+	width: 4px;
+	height: 4px;
+}

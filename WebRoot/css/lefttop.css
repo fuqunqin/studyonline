@@ -1,0 +1,25 @@
+/*×ó±ß±êÌâ¿ò¼Ü¡ý*/
+.lefttopleft {
+	background:
+		url('${pageContext.request.contextPath}/mainimages/lanmutopcenter.gif')
+		;
+	width: 182px;
+	height: 30px;
+}
+
+.lefttopcenter {
+	background:
+		url('${pageContext.request.contextPath}/mainimages/lanmutopcenter.gif')
+		;
+	width: 182px;
+	height: 30px;
+	color: #FFF
+}
+
+.lefttopright {
+	background:
+		url('${pageContext.request.contextPath}/mainimages/lanmutopright.gif')
+		;
+	width: 6px;
+	height: 30px;
+}

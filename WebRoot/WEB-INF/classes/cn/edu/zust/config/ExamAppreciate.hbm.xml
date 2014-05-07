@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.ExamAppreciate"
+		table="S_EXAM_APPRECIATE">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_examappreciate_seq</param>
+			</generator>
+		</id>
+		<property name="title" type="string">
+			<column name="TITLE" length="100" />
+		</property>
+		<property name="content" type="text">
+			<column name="CONTENT" />
+		</property>
+		<property name="publishDate" type="date">
+			<column name="PUBLISH_DATE" length="7" />
+		</property>
+	</class>
+</hibernate-mapping>

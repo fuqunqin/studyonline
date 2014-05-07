@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.Logout" table="S_LOGOUT">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_logout_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="User" class="cn.edu.zust.entity.User">
+			<column name="USER_ID" precision="22" />
+		</many-to-one>
+		<property name="logoutCause" type="string">
+			<column name="LOGOUT_CAUSE" length="200" />
+		</property>
+	</class>
+</hibernate-mapping>

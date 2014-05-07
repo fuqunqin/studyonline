@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.Admin" table="S_ADMIN">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_admin_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="certificate" lazy="false"
+			class="cn.edu.zust.entity.Certificate">
+			<column name="CERTIFICATE_ID" precision="22" />
+		</many-to-one>
+		<many-to-one name="status" class="cn.edu.zust.entity.Status"
+			lazy="false">
+			<column name="STATUS_ID" precision="22" />
+		</many-to-one>
+		<many-to-one name="security" lazy="false"
+			class="cn.edu.zust.entity.Security">
+			<column name="SECURITY_ID" precision="22" />
+		</many-to-one>
+		<property name="loginName" type="string">
+			<column name="LOGIN_NAME" length="200" 
+				unique="true" />
+		</property>
+		<property name="loginPassword" type="string">
+			<column name="LOGIN_PASSWORD" length="200" not-null="true" />
+		</property>
+		<property name="certificateNumber" type="string">
+			<column name="CERTIFICATE_NUMBER" length="200" />
+		</property>
+		<property name="securityAnswer" type="string">
+			<column name="SECURITY_ANSWER" length="200" />
+		</property>
+		<property name="email" type="string">
+			<column name="EMAIL" length="200" />
+		</property>
+		<property name="telephone" type="string">
+			<column name="TELEPHONE" length="200" />
+		</property>
+		<property name="address" type="string">
+			<column name="ADDRESS" length="200" />
+		</property>
+		<set name="menues" table="s_admin_menu" lazy="false">
+			<key column="admin_id" />
+			<many-to-many class="cn.edu.zust.entity.Menu"
+				column="menu_id" />
+		</set>
+	</class>
+</hibernate-mapping>

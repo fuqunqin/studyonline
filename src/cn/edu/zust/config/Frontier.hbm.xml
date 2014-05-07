@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.Frontier" table="S_FRONTIER">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_frontier_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="FrontierType" lazy="false"
+			class="cn.edu.zust.entity.FrontierType">
+			<column name="FRONTIER_TYPE_ID" precision="22" />
+		</many-to-one>
+		<many-to-one name="subject" class="cn.edu.zust.entity.Subject"
+			lazy="false">
+			<column name="SUBJECT_ID" precision="22" />
+		</many-to-one>
+		<property name="publishDate" type="date">
+			<column name="PUBLISH_DATE" length="7" />
+		</property>
+		<property name="title" type="string">
+			<column name="TITLE" length="200" />
+		</property>
+		<property name="content" type="text">
+			<column name="CONTENT" />
+		</property>
+	</class>
+</hibernate-mapping>

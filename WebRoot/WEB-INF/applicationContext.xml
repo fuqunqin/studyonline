@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd" >
+<beans>
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="system" />
+		<property name="password" value="system" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.format_sql">true</prop>
+				
+				<prop key="hibernate.autoReconnect">true</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/edu/zust/config/Accreditation.hbm.xml</value>
+				<value>cn/edu/zust/config/Admin.hbm.xml</value>
+				<value>cn/edu/zust/config/Certificate.hbm.xml</value>
+				<value>
+					cn/edu/zust/config/CertificateExam.hbm.xml
+				</value>
+				<value>cn/edu/zust/config/EnglishStudy.hbm.xml</value>
+				<value>
+					cn/edu/zust/config/ExamAppreciate.hbm.xml
+				</value>
+				<value>cn/edu/zust/config/Frontier.hbm.xml</value>
+				<value>cn/edu/zust/config/FrontierType.hbm.xml</value>
+				<value>cn/edu/zust/config/InterestGroup.hbm.xml</value>
+				<value>cn/edu/zust/config/Logout.hbm.xml</value>
+				<value>cn/edu/zust/config/Menu.hbm.xml</value>
+				<value>
+					cn/edu/zust/config/OnlineListening.hbm.xml
+				</value>
+				<value>cn/edu/zust/config/PubmedTribe.hbm.xml</value>
+				<value>cn/edu/zust/config/PubmedType.hbm.xml</value>
+				<value>
+					cn/edu/zust/config/QualificationType.hbm.xml
+				</value>
+				<value>cn/edu/zust/config/Security.hbm.xml</value>
+				<value>cn/edu/zust/config/Share.hbm.xml</value>
+				<value>cn/edu/zust/config/ShareType.hbm.xml</value>
+				<value>cn/edu/zust/config/Status.hbm.xml</value>
+				<value>cn/edu/zust/config/Subject.hbm.xml</value>
+				<value>cn/edu/zust/config/SutraBook.hbm.xml</value>
+				<value>cn/edu/zust/config/User.hbm.xml</value>
+				<value>cn/edu/zust/config/Win.hbm.xml</value>
+				<value>cn/edu/zust/config/UserMessage.hbm.xml</value>
+				<value>cn/edu/zust/config/Test.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- hibernateTemplate的配置 -->
+	<bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- dao层配置 -->
+	<bean id="accreditationDao"
+		class="cn.edu.zust.dao.impl.AccreditationDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="adminDao" class="cn.edu.zust.dao.impl.AdminDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="certificateDao"
+		class="cn.edu.zust.dao.impl.CertificateDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="certificateExamDao"
+		class="cn.edu.zust.dao.impl.CertificateExamDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="englishStudyDao"
+		class="cn.edu.zust.dao.impl.EnglishStudyDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="ExamAppreciateDao"
+		class="cn.edu.zust.dao.impl.ExamAppreciateDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="frontierDao"
+		class="cn.edu.zust.dao.impl.FrontierDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="frontierTypeDao"
+		class="cn.edu.zust.dao.impl.FrontierTypeDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="interestGroupDao"
+		class="cn.edu.zust.dao.impl.InterestGroupDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="logoutDao" class="cn.edu.zust.dao.impl.LogoutDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="menuDao" class="cn.edu.zust.dao.impl.MenuDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="onlineListeningDao"
+		class="cn.edu.zust.dao.impl.OnlineListeningDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="pubmedTypeDao"
+		class="cn.edu.zust.dao.impl.PubmedTypeDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="pubmedTribeDao"
+		class="cn.edu.zust.dao.impl.PubmedTribeDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="qualificationTypeDao"
+		class="cn.edu.zust.dao.impl.QualificationTypeDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="securityDao"
+		class="cn.edu.zust.dao.impl.SecurityDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="shareDao" class="cn.edu.zust.dao.impl.ShareDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="shareTypeDao"
+		class="cn.edu.zust.dao.impl.ShareTypeDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="statusDao" class="cn.edu.zust.dao.impl.StatusDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="subjectDao"
+		class="cn.edu.zust.dao.impl.SubjectDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="sutraBookDao"
+		class="cn.edu.zust.dao.impl.SutraBookDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="userDao" class="cn.edu.zust.dao.impl.UserDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="winDao" class="cn.edu.zust.dao.impl.WinDaoImpl">
+		<property name="ht" ref="hibernateTemplate" />
+	</bean>
+	<bean id="userMessageDao"
+		class="cn.edu.zust.dao.impl.UserMessageDaoImpl">
+		<property name="ht" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="testDao" class="cn.edu.zust.dao.impl.TestDaoImpl">
+		<property name="ht" ref="hibernateTemplate"></property>
+	</bean>
+
+	<!-- 工具类 -->
+	<bean id="previousNext" class="cn.edu.zust.util.PreviousNext">
+		<property name="ht" ref="hibernateTemplate"></property>
+	</bean>
+	<!-- biz层配置 -->
+	<bean id="adminBiz" class="cn.edu.zust.biz.impl.AdminBizImpl">
+		<property name="adminDao" ref="adminDao"></property>
+		<property name="certificateDao" ref="certificateDao"></property>
+		<property name="menuDao" ref="menuDao"></property>
+		<property name="securityDao" ref="securityDao"></property>
+		<property name="statusDao" ref="statusDao"></property>
+	</bean>
+	<bean id="menuBiz" class="cn.edu.zust.biz.impl.MenuBizImpl">
+		<property name="menuDao" ref="menuDao"></property>
+	</bean>
+	<bean id="statusBiz" class="cn.edu.zust.biz.impl.StatusBizImpl">
+		<property name="statusDao" ref="statusDao"></property>
+	</bean>
+	<bean id="securityBiz"
+		class="cn.edu.zust.biz.impl.SecurityBizImpl">
+		<property name="securityDao" ref="securityDao"></property>
+	</bean>
+	<bean id="certificateBiz"
+		class="cn.edu.zust.biz.impl.CertificateBizImpl">
+		<property name="certificateDao" ref="certificateDao"></property>
+	</bean>
+	<bean id="subjectBiz"
+		class="cn.edu.zust.biz.impl.SubjectBizImpl">
+		<property name="subjectDao" ref="subjectDao"></property>
+	</bean>
+	<bean id="frontierTypeBiz"
+		class="cn.edu.zust.biz.impl.FrontierTypeBizImpl">
+		<property name="frontierTypeDao" ref="frontierTypeDao"></property>
+	</bean>
+	<bean id="frontierBiz"
+		class="cn.edu.zust.biz.impl.FrontierBizImpl">
+		<property name="frontierDao" ref="frontierDao"></property>
+		<property name="frontierTypeDao" ref="frontierTypeDao"></property>
+		<property name="subjectDao" ref="subjectDao"></property>
+	</bean>
+	<bean id="winBiz" class="cn.edu.zust.biz.impl.WinBizImpl">
+		<property name="subjectDao" ref="subjectDao"></property>
+		<property name="winDao" ref="winDao"></property>
+	</bean>
+	<bean id="sutraBookBiz"
+		class="cn.edu.zust.biz.impl.SutraBookBizImpl">
+		<property name="sutraBookDao" ref="sutraBookDao"></property>
+		<property name="subjectDao" ref="subjectDao"></property>
+	</bean>
+	<bean id="shareTypeBiz"
+		class="cn.edu.zust.biz.impl.ShareTypeBizImpl">
+		<property name="shareTypeDao" ref="shareTypeDao"></property>
+	</bean>
+	<bean id="shareBiz" class="cn.edu.zust.biz.impl.ShareBizImpl">
+		<property name="shareDao" ref="shareDao"></property>
+		<property name="shareTypeDao" ref="shareTypeDao"></property>
+		<property name="subjectDao" ref="subjectDao"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="userMessageDao" ref="userMessageDao"></property>
+	</bean>
+	<bean id="pubmedTypeBiz"
+		class="cn.edu.zust.biz.impl.PubmedTypeBizImpl">
+		<property name="pubmedTypeDao" ref="pubmedTypeDao"></property>
+	</bean>
+	<bean id="pubmedTribeBiz"
+		class="cn.edu.zust.biz.impl.PubmedTribeBizImpl">
+		<property name="pubmedTribeDao" ref="pubmedTribeDao"></property>
+		<property name="pubmedTypeDao" ref="pubmedTypeDao"></property>
+	</bean>
+	<bean id="qualificationTypeBiz"
+		class="cn.edu.zust.biz.impl.QualificationTypeBizImpl">
+		<property name="qualificationTypeDao"
+			ref="qualificationTypeDao">
+		</property>
+	</bean>
+	<bean id="accreditationBiz"
+		class="cn.edu.zust.biz.impl.AccreditationBizImpl">
+		<property name="accreditationDao" ref="accreditationDao"></property>
+		<property name="qualificationTypeDao"
+			ref="qualificationTypeDao">
+		</property>
+	</bean>
+	<bean id="certificateExamBiz"
+		class="cn.edu.zust.biz.impl.CertificateExamBizImpl">
+		<property name="ced" ref="certificateExamDao"></property>
+		<property name="qtd" ref="qualificationTypeDao"></property>
+	</bean>
+	<bean id="englishStudyBiz"
+		class="cn.edu.zust.biz.impl.EnglishStudyBizImpl">
+		<property name="englishStudyDao" ref="englishStudyDao"></property>
+	</bean>
+	<bean id="onlineListeningBiz"
+		class="cn.edu.zust.biz.impl.OnlineListeningBizImpl">
+		<property name="onlineListeningDao" ref="onlineListeningDao"></property>
+	</bean>
+	<bean id="examAppreciateBiz"
+		class="cn.edu.zust.biz.impl.ExamAppreciateBizImpl">
+		<property name="examAppreciateDao" ref="ExamAppreciateDao"></property>
+	</bean>
+	<bean id="testBiz" class="cn.edu.zust.biz.impl.TestBizImpl">
+		<property name="testDao" ref="testDao"></property>
+		<property name="qualificationTypeDao"
+			ref="qualificationTypeDao">
+		</property>
+	</bean>
+	<bean id="userMessageBiz"
+		class="cn.edu.zust.biz.impl.UserMessageBizImpl">
+		<property name="userMessageDao" ref="userMessageDao"></property>
+	</bean>
+	<bean id="userBiz" class="cn.edu.zust.biz.impl.UserBizImpl">
+		<property name="certificateDao" ref="certificateDao"></property>
+		<property name="securityDao" ref="securityDao"></property>
+		<property name="statusDao" ref="statusDao"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="userMessageDao" ref="userMessageDao"></property>
+	</bean>
+	<bean id="interestGroupBiz"
+		class="cn.edu.zust.biz.impl.InterestGroupBizImpl">
+		<property name="interestGroupDao" ref="interestGroupDao"></property>
+		<property name="userMessageDao" ref="userMessageDao"></property>
+	</bean>
+	<!-- 事物的控制 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="interceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">
+					PROPAGATION_REQUIRED,timeout_12,-ScException
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="auto"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>*Biz</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>interceptor</value>
+			</list>
+		</property>
+	</bean>
+	<!-- action配置 -->
+	<bean
+		name="/adminLogin,/admin/queryAdmins,/admin/addAdmin,/admin/queryAdmin,
+		/admin/deleteAdmin,/admin/activeAdmin,/admin/updateAdmin,,/findPassword
+		/admin/modifyAdmin,/admin/modifySelfBase,/admin/modifySelfSafe,/findPassword2"
+		class="cn.edu.zust.web.action.AdminAction">
+		<property name="adminBiz" ref="adminBiz"></property>
+		<property name="menuBiz" ref="menuBiz"></property>
+		<property name="ceritificateBiz" ref="certificateBiz"></property>
+		<property name="securityBiz" ref="securityBiz"></property>
+	</bean>
+	<bean name="/admin/queryStatuses"
+		class="cn.edu.zust.web.action.StatusAction">
+		<property name="statusBiz" ref="statusBiz"></property>
+	</bean>
+	<bean name="/admin/querySecurities,/admin/addSecurity"
+		class="cn.edu.zust.web.action.SecurityAction">
+		<property name="securityBiz" ref="securityBiz"></property>
+	</bean>
+	<bean name="/admin/queryCertificate,/admin/addCertificate"
+		class="cn.edu.zust.web.action.CertificateAction">
+		<property name="certificateBiz" ref="certificateBiz"></property>
+	</bean>
+	<bean name="/admin/querySubjects,/admin/addSubject"
+		class="cn.edu.zust.web.action.SubjectAction">
+		<property name="subjectBiz" ref="subjectBiz"></property>
+	</bean>
+	<bean name="/admin/queryFrontierTypes,/admin/addFrontierType"
+		class="cn.edu.zust.web.action.FrontierTypeAction">
+		<property name="frontierTypeBiz" ref="frontierTypeBiz"></property>
+	</bean>
+	<bean
+		name="/admin/addFrontier,/admin/queryFrontieres,/admin/queryFrontier,
+		/admin/deleteFrontier,/admin/updateFrontier,/admin/modifyFrontier"
+		class="cn.edu.zust.web.action.FrontierAction">
+		<property name="frontierBiz" ref="frontierBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryWins,/admin/addWin,/admin/deleteWins,/admin/updateWin,
+		/admin/queryWin,/admin/modifyWin"
+		class="cn.edu.zust.web.action.WinAction">
+		<property name="winBiz" ref="winBiz"></property>
+	</bean>
+	<bean
+		name="/admin/querySutraBooks,/admin/addSutraBook,/admin/deleteSutraBooks,
+		/admin/querySutraBook,/admin/updateSutraBook,/admin/modifySutraBook"
+		class="cn.edu.zust.web.action.SutraBookAction">
+		<property name="sutraBookBiz" ref="sutraBookBiz"></property>
+	</bean>
+	<bean name="/admin/queryShareTypes,/admin/addShareType"
+		class="cn.edu.zust.web.action.ShareTypeAction">
+		<property name="shareTypeBiz" ref="shareTypeBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryShares,/admin/addShare,/admin/deleteShares,
+		/admin/queryShare,/admin/updateShare,/admin/modifyShare,
+		/user/queryUserShares,/user/addShare,/user/deleteShares,
+		/user/updateShare,/user/modifyShare"
+		class="cn.edu.zust.web.action.ShareAction">
+		<property name="shareBiz" ref="shareBiz"></property>
+	</bean>
+	<bean name="/admin/queryPubmedTypes,/admin/addPubmedType"
+		class="cn.edu.zust.web.action.PubmedTypeAction">
+		<property name="pubmedTypeBiz" ref="pubmedTypeBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryPubmedTribes,/admin/addPubmedTribe,/admin/queryPubmedTribe,
+		/admin/deletePubmedTribes,/admin/updatePubmedTribe,/admin/modifyPubmedTribe"
+		class="cn.edu.zust.web.action.PubmedTribeAction">
+		<property name="pubmedTribeBiz" ref="pubmedTribeBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryQualificationTypes,/admin/addQualificationType"
+		class="cn.edu.zust.web.action.QualificationTypeAction">
+		<property name="qualificationTypeBiz"
+			ref="qualificationTypeBiz">
+		</property>
+	</bean>
+	<bean
+		name="/admin/queryAccreditations,/admin/addAccreditation,/admin/queryAccreditation,
+		/admin/deleteAccreditations,/admin/updateAccreditation,/admin/modifyAccreditation"
+		class="cn.edu.zust.web.action.AccreditationAction">
+		<property name="accreditationBiz" ref="accreditationBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryCertificateExams,/admin/addCertificateExam,/admin/deleteCertificateExams,
+		/admin/queryCertificateExam"
+		class="cn.edu.zust.web.action.CertificateExamAction">
+		<property name="certificateExamBiz" ref="certificateExamBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryEnglishStudies,/admin/addEnglishStudy,/admin/queryEnglishStudy,
+		/admin/updateEnglishStudy,/admin/modifyEnglishStudy,/admin/deleteEnglishStudies"
+		class="cn.edu.zust.web.action.EnglishStudyAction">
+		<property name="englishStudyBiz" ref="englishStudyBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryOnlineListenings,/admin/addOnlineListening,/admin/queryOnlineListening，
+		/admin/modifyOnlineListening,/admin/modifyOnlineListening,/admin/deleteOnlineListenings"
+		class="cn.edu.zust.web.action.OnlineListeningAction">
+		<property name="onlineListengBiz" ref="onlineListeningBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryExamAppreciates,/admin/addExamAppreciate,/admin/queryExamAppreciate,
+		/admin/updateExamAppreciate,/admin/modifyExamAppreciate,/admin/deleteExamAppreciates"
+		class="cn.edu.zust.web.action.ExamAppreciateAction">
+		<property name="examAppreciateBiz" ref="examAppreciateBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryTests,/admin/addTest,/admin/queryTest,/admin/updateTest
+		/admin/modifyTest,/admin/deleteTests"
+		class="cn.edu.zust.web.action.TestAction">
+		<property name="testBiz" ref="testBiz"></property>
+	</bean>
+	<bean
+		name="/admin/queryUsers,/admin/addUser,/admin/queryUser,/admin/updateUser,
+		/admin/modifyUser,/admin/deleteUsers,/admin/activeUsers,
+		/userLogin,/user/exit,/user/logout,/user/markUserMessage,
+		/user/modifySelf,/register,
+		/user/jiaRuGroup"
+		class="cn.edu.zust.web.action.UserAction">
+		<property name="userBiz" ref="userBiz"></property>
+		<property name="certificateBiz" ref="certificateBiz"></property>
+		<property name="securityBiz" ref="securityBiz"></property>
+		<property name="userMessageBiz" ref="userMessageBiz"></property>
+	</bean>
+	<!-- 用户自服务 -->
+	<bean
+		name="/querySubjects,/queryFrontiers,/queryWins,/querySutraBooks,
+		/queryPubmedTribes,
+		/queryQualifications,/queryAccreditations,/queryCertificateExams,/queryTests,
+		/queryEnglishes,/queryEnglishStudies,/queryOnlineListenings,/queryExamAppreciates,
+		/queryShares,
+		/queryFrontier,/queryWin,/querySutraBook,
+		/queryPubmedTribe,
+		/queryAccreditation,/queryCertificateExam,/queryTest,
+		/queryEnglishStudy,/queryOnlineListening,/queryExamAppreciate,
+		/queryShare"
+		class="cn.edu.zust.web.action.SelfServiceAction">
+		<property name="frontierBiz" ref="frontierBiz"></property>
+		<property name="sutraBookBiz" ref="sutraBookBiz"></property>
+		<property name="winBiz" ref="winBiz"></property>
+		<property name="pubmedTribeBiz" ref="pubmedTribeBiz"></property>
+		<property name="accreditationBiz" ref="accreditationBiz"></property>
+		<property name="certificateExamBiz" ref="certificateExamBiz"></property>
+		<property name="testBiz" ref="testBiz"></property>
+		<property name="englishStudyBiz" ref="englishStudyBiz"></property>
+		<property name="onlineListeningBiz" ref="onlineListeningBiz"></property>
+		<property name="examAppreciateBiz" ref="examAppreciateBiz"></property>
+		<property name="shareBiz" ref="shareBiz"></property>
+		<property name="previousNext" ref="previousNext"></property>
+	</bean>
+	<bean
+		name="/user/addInterestGroup,/user/queryInterestGroups,/user/queryGroupUsers,
+		/user/modifyGroup,/user/updateGroup,/queryInterestGroups,
+		/user/removeGroupUser,/user/jieSanGroup,
+		/admin/queryInterestGroups,/admin/deleteGroup"
+		class="cn.edu.zust.web.action.InterestGroupAction">
+		<property name="interestGroupBiz" ref="interestGroupBiz"></property>
+	</bean>
+	<!-- 群组聊天室 -->
+	<bean name="/chat"
+		class="cn.edu.zust.web.action.ChatOnlineAction">
+		<property name="interestGroupBiz" ref="interestGroupBiz"></property>
+	</bean>
+	<!-- dwr的配置 -->
+	<bean name="frontierTypeDwr"
+		class="cn.edu.zust.web.dwr.FrontierTypeDwr">
+		<property name="frontierTypeBiz" ref="frontierTypeBiz"></property>
+	</bean>
+	<bean name="subjectDwr" class="cn.edu.zust.web.dwr.SubjectDwr">
+		<property name="subjectBiz" ref="subjectBiz"></property>
+	</bean>
+	<bean name="shareTypeDwr"
+		class="cn.edu.zust.web.dwr.ShareTypeDwr">
+		<property name="shareTypeBiz" ref="shareTypeBiz"></property>
+	</bean>
+	<bean name="pubmedTypeDwr"
+		class="cn.edu.zust.web.dwr.PubmedTypeDwr">
+		<property name="pubmedTypeBiz" ref="pubmedTypeBiz"></property>
+	</bean>
+	<bean name="qualificationTypeDwr"
+		class="cn.edu.zust.web.dwr.QualificationTypeDwr">
+		<property name="qtb" ref="qualificationTypeBiz"></property>
+	</bean>
+	<bean name="certificateDwr"
+		class="cn.edu.zust.web.dwr.CertificateDwr">
+		<property name="certificateBiz" ref="certificateBiz"></property>
+	</bean>
+	<bean name="securityDwr" class="cn.edu.zust.web.dwr.SecurityDwr">
+		<property name="securityBiz" ref="securityBiz"></property>
+	</bean>
+	<bean name="userDwr" class="cn.edu.zust.web.dwr.UserDwr">
+		<property name="userBiz" ref="userBiz"></property>
+	</bean>
+	<bean name="adminDwr" class="cn.edu.zust.web.dwr.AdminDwr">
+		<property name="adminBiz" ref="adminBiz"></property>
+	</bean>
+</beans>

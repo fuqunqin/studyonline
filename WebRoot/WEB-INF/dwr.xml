@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "dwr20.dtd" >
+<dwr>
+	<allow>
+		<create creator="spring" javascript="FrontierTypeDwr"
+			scope="page">
+			<param name="beanName" value="frontierTypeDwr" />
+		</create>
+		<create creator="spring" javascript="SubjectDwr" scope="page">
+			<param name="beanName" value="subjectDwr" />
+		</create>
+		<create creator="spring" javascript="ShareTypeDwr"
+			scope="page">
+			<param name="beanName" value="shareTypeDwr" />
+		</create>
+		<create creator="spring" javascript="PubmedTypeDwr"
+			scope="page">
+			<param name="beanName" value="pubmedTypeDwr" />
+		</create>
+		<create creator="spring" javascript="QualificationTypeDwr"
+			scope="page">
+			<param name="beanName" value="qualificationTypeDwr" />
+		</create>
+		<create creator="spring" javascript="CertificateDwr"
+			scope="page">
+			<param name="beanName" value="certificateDwr" />
+		</create>
+		<create creator="spring" javascript="SecurityDwr"
+			scope="page">
+			<param name="beanName" value="securityDwr" />
+		</create>
+		<create creator="spring" javascript="UserDwr"
+			scope="page">
+			<param name="beanName" value="userDwr" />
+		</create>
+		<create creator="spring" javascript="AdminDwr"
+			scope="page">
+			<param name="beanName" value="adminDwr" />
+		</create>
+
+		<convert converter="bean"
+			match="cn.edu.zust.entity.FrontierType">
+		</convert>
+		<convert converter="bean" match="cn.edu.zust.entity.Subject">
+		</convert>
+		<convert converter="bean"
+			match="cn.edu.zust.entity.ShareType">
+		</convert>
+		<convert converter="bean"
+			match="cn.edu.zust.entity.PubmedType">
+		</convert>
+		<convert converter="bean"
+			match="cn.edu.zust.entity.QualificationType">
+		</convert>
+		<convert converter="bean"
+			match="cn.edu.zust.entity.Certificate">
+		</convert>
+		<convert converter="bean"
+			match="cn.edu.zust.entity.Security">
+		</convert>
+	</allow>
+</dwr>

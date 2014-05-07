@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zust.entity.SutraBook" table="S_SUTRA_BOOK">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">s_sutrabook_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="subject" class="cn.edu.zust.entity.Subject"
+			lazy="false">
+			<column name="SUBJECT_ID" precision="22" scale="0" />
+		</many-to-one>
+		<property name="bookName" type="string">
+			<column name="BOOK_NAME" length="100" />
+		</property>
+		<property name="publicCompany" type="string">
+			<column name="PUBLIC_COMPANY" length="100" />
+		</property>
+		<property name="bookUserName" type="string">
+			<column name="BOOK_USER_NAME" length="100" />
+		</property>
+		<property name="publicDate" type="date">
+			<column name="PUBLIC_DATE" length="7" />
+		</property>
+		<property name="bookSynopsis" type="string">
+			<column name="BOOK_SYNOPSIS" length="4000" />
+		</property>
+		<property name="publishDate" type="date">
+			<column name="PUBLISH_DATE" length="7" />
+		</property>
+	</class>
+</hibernate-mapping>
