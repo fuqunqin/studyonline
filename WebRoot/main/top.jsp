@@ -3,7 +3,9 @@
 <html>
 	<head>
 		<style type="text/css">
-		body{
+		
+		
+body{
 			background-color: #f1f2f6;
 		}
 /*主体宽度设置↓*/
@@ -263,6 +265,7 @@ a.menufont:hover {
  	left: 0px;
 }
 </style>
+
 	</head>
 	<body>
 		<table border='0' cellspacing='0' cellpadding='0' align='center'>
@@ -398,8 +401,9 @@ a.menufont:hover {
 			<tr>
 				<td class='left'></td>
 				<td height="100%">
-					<img class="headbar" src="${pageContext.request.contextPath }/mainimages/logo2.png"
-						border="0" />
+					<img class="headbar" src="${pageContext.request.contextPath }/mainimages/logo2.png"border="0" />
+						
+				
 				</td>
 				<td class='right'></td>
 			</tr>

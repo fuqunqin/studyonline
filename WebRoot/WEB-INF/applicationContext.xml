@@ -398,7 +398,7 @@
 	</bean>
 	<bean
 		name="/admin/queryCertificateExams,/admin/addCertificateExam,/admin/deleteCertificateExams,
-		/admin/queryCertificateExam"
+		/admin/queryCertificateExam,/admin/updateCertificateExam,/admin/modifyCertificateExam"
 		class="cn.edu.zust.web.action.CertificateExamAction">
 		<property name="certificateExamBiz" ref="certificateExamBiz"></property>
 	</bean>
@@ -409,8 +409,8 @@
 		<property name="englishStudyBiz" ref="englishStudyBiz"></property>
 	</bean>
 	<bean
-		name="/admin/queryOnlineListenings,/admin/addOnlineListening,/admin/queryOnlineListening，
-		/admin/modifyOnlineListening,/admin/modifyOnlineListening,/admin/deleteOnlineListenings"
+		name="/admin/queryOnlineListenings,/admin/addOnlineListening,/admin/queryOnlineListening,
+		/admin/modifyOnlineListening,/admin/modifyOnlineListening,/admin/deleteOnlineListenings,/admin/updateOnlineListening"
 		class="cn.edu.zust.web.action.OnlineListeningAction">
 		<property name="onlineListengBiz" ref="onlineListeningBiz"></property>
 	</bean>

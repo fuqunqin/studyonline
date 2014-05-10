@@ -465,6 +465,21 @@
 				path="/admin/qualificationmanager/certificateexammanager/queryCertificateExam.jsp">
 			</forward>
 		</action>
+		<!-- 修改资格考试信息 -->
+		<action path="/admin/updateCertificateExam"
+			parameter="adminQueryCertificateExam"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" 
+			path="/admin/qualificationmanager/certificateexammanager/modifyCertificateExam.jsp">
+			</forward>
+		</action>
+		<action path="/admin/modifyCertificateExam"
+			parameter="adminModifyCertificateExam"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" 
+			path="/admin/queryCertificateExams.do">
+			</forward>
+		</action>
 		<!-- 删除资格考试信息 -->
 		<action path="/admin/deleteCertificateExams"
 			parameter="adminDeleteCertificateExams"

@@ -49,7 +49,7 @@
 			</ul>
 			<div id="page">
 				<table border="0" width='99%' cellspacing='0' cellpadding='0'>
-					<c:forEach var="interestGroup" items="${userInterestGroups }">
+					<c:forEach var="interestGroup" items="${userInterestGroups}">
 
 						<tr>
 							<td

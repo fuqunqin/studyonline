@@ -32,7 +32,7 @@
 				});
 				QualificationTypeDwr.query(function(qualificationTypes){
 					dwr.util.removeAllOptions("qualificationTypes");
-					dwr.util.addOptions("qualificationTypes",qualificationTypes, "id", "typeName");
+					dwr.util.addOptions("qualificationTypes",qualificationTypes);
 				});
 				document.getElementById("tiJiao").onclick=function(){
 					var title=document.getElementById("title").value;
