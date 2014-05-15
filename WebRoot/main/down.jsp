@@ -12,22 +12,19 @@
 
 /*下边标题框架↓*/
 .footleft {
-	background:
-		url('${pageContext.request.contextPath}/mainimages/footleft.gif');
+	//background:url('${pageContext.request.contextPath}/mainimages/footleft.gif');
 	height: 4px;
 	width: 4px
 }
 
 .footcenter {
-	background:
-		url('${pageContext.request.contextPath}/mainimages/footcenter.gif');
+	background:url('${pageContext.request.contextPath}/mainimages/footcenter.gif');
 	height: 4px;
 	width: 980px;
 }
 
 .footright {
-	background:
-		url('${pageContext.request.contextPath}/mainimages/footright.gif');
+	//background:url('${pageContext.request.contextPath}/mainimages/footright.gif');
 	height: 4px;
 	width: 4px
 }
@@ -38,7 +35,7 @@
 		<table border='0' cellspacing='0' cellpadding='0' align='center'
 			class='footmenucss'>
 			<tr>
-				<td class='left'></td>
+				<td class=''></td>
 				<td align='center' class='width'>
 					<table border='0' cellspacing='0' cellpadding='0' align='center'
 						width='98%' height="30">
@@ -48,14 +45,13 @@
 									<marquee height="15" onMouseOver=this.stop()
 										onMouseOut=this.start() scrollamount=3 scrolldelay=100
 										direction=left style="color: red; text-align: center;">
-										欢迎光临在线学习网络平台，希望我们的努力能为你的学习带来帮助，欢迎您成为我们宣传的动力！
 									</marquee>
 								</center>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td class=right></td>
+				<td class=''></td>
 			</tr>
 		</table>
 		<table border='0' cellspacing='0' cellpadding='0' align='center'

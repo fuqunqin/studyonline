@@ -24,7 +24,7 @@
 				<td height="5"></td>
 			</tr>
 		</table>
-		<div id="div1" style="border-color: #0054AA; height: 1050px">
+		<div id="div1" style="border-color: #0054AA; height: 1000px;">
 			<ul>
 				<li>
 					<a href="#div11">学科动态</a>

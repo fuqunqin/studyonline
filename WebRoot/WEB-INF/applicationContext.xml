@@ -16,7 +16,7 @@
 		<property name="hibernateProperties">
 			<props>
 				
-					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.show_sql">false</prop>
 					<prop key="hibernate.format_sql">true</prop>
 				
 				<prop key="hibernate.autoReconnect">true</prop>
@@ -510,4 +510,21 @@
 	<bean name="adminDwr" class="cn.edu.zust.web.dwr.AdminDwr">
 		<property name="adminBiz" ref="adminBiz"></property>
 	</bean>
+	
+	<!-- mobile beans -->
+	<bean name="/m/querySubjects,/m/queryFrontiers" class="cn.edu.zust.web.maction.SelfServiceAction">
+		<property name="frontierBiz" ref="frontierBiz"></property>
+		<property name="sutraBookBiz" ref="sutraBookBiz"></property>
+		<property name="winBiz" ref="winBiz"></property>
+		<property name="pubmedTribeBiz" ref="pubmedTribeBiz"></property>
+		<property name="accreditationBiz" ref="accreditationBiz"></property>
+		<property name="certificateExamBiz" ref="certificateExamBiz"></property>
+		<property name="testBiz" ref="testBiz"></property>
+		<property name="englishStudyBiz" ref="englishStudyBiz"></property>
+		<property name="onlineListeningBiz" ref="onlineListeningBiz"></property>
+		<property name="examAppreciateBiz" ref="examAppreciateBiz"></property>
+		<property name="shareBiz" ref="shareBiz"></property>
+		<property name="previousNext" ref="previousNext"></property>
+	</bean>
+	<!-- mobile beans -->
 </beans>

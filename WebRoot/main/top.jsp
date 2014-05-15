@@ -2,6 +2,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/datepicker/jquery_last.js"></script>
+	
 		<style type="text/css">
 		
 		
@@ -246,8 +248,7 @@ a.menufont:hover {
 .topcenter {
 	background-color:#f1f2f6;
 	width: 720px;
-	height: 100px;
-	
+	height: 75px;
 }
 
 .topright {
@@ -264,6 +265,42 @@ a.menufont:hover {
 	
  	left: 0px;
 }
+
+
+/* Slideshow */
+.slideshow{  margin:0px auto; width:980px; height:200px; border:1px solid #CCC; overflow:hidden; position:relative;}
+#showimg{ z-index:10;}
+#showimg img{ width:980px; height:200px; display:block;}
+.opacity{
+	float:left;
+	width:980px;
+	height:30px;
+	/*background-color:#F0F0F0;*/
+	position:absolute;
+	z-index:99;
+	left:3px;
+	bottom:1px;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;
+	overflow:hidden;
+}
+.operate{ position:absolute; z-index:1000; right:3px; bottom:3px;}
+.operate span{ float:left; padding:1px 10px; margin-left:1px; height:22px; line-height:22px; font-weight:bold; cursor:pointer; color:#000; text-align:center;}
+.operate span.hov{ color:#FFF; background-color:#0962C6;}
+#msg{
+	float:left;
+	width:980px;
+	height:26px;
+	line-height:26px;
+	position:absolute;
+	z-index:100;
+	left:1px;
+	bottom:3px;
+	overflow:hidden;
+}
+#msg li{ padding-left:14px; height:24px; line-height:24px; font-size:14px; font-weight:bold; color:#004C94; text-align:left; display:block;}
+
 </style>
 
 	</head>
@@ -272,7 +309,7 @@ a.menufont:hover {
 			<tr>
 				
 				<td class='topleft' align='center'>
-					<img class="weblogo" src='${pageContext.request.contextPath}/mainimages/weblogo.jpg'>
+					<img class="weblogo" src='${pageContext.request.contextPath}/mainimages/weblogo.png'>
 				</td>
 				<td class='topcenter' align="left" valign="middle">
 					<font color="">在线学习网络平台</font>
@@ -401,12 +438,71 @@ a.menufont:hover {
 			<tr>
 				<td class='left'></td>
 				<td height="100%">
-					<img class="headbar" src="${pageContext.request.contextPath }/mainimages/logo2.png"border="0" />
-						
-				
+					<!-- <img class="headbar" src="${pageContext.request.contextPath }/mainimages/logo2.png"border="0" />
+						-->
 				</td>
 				<td class='right'></td>
 			</tr>
 		</table>
+		
+		<!-- Slideshow Begin-->
+		<div class="slideshow" id="slideshow"> 
+          <div id="showimg">
+           <a href="#" target=""><img src="${pageContext.request.contextPath }/mainimages/slider(2).jpg" class="attachment-full wp-post-image" alt="" /></a>
+           <a href="#" target=""><img src="${pageContext.request.contextPath }/mainimages/slider(1).jpg" class="attachment-full wp-post-image" alt="" /></a>
+           <a href="#" target=""><img src="${pageContext.request.contextPath }/mainimages/slider(3).jpg" class="attachment-full wp-post-image" alt="" /></a>
+           <a href="#" target=""><img src="${pageContext.request.contextPath }/mainimages/slider(4).jpg" class="attachment-full wp-post-image" alt="" /></a>
+          </div>
+        <div class="opacity"></div>
+        <div class="operate" id="operate">
+           <span class="hov">1</span><span>2</span><span>3</span><span>4</span>
+        </div>
+        <ul id="msg">
+          <li><a href="#" target=""></a></li>
+          <li><a href="#" target=""></a></li>
+          <li><a href="#" target=""></a></li>
+          <li><a href="#" target=""></a></li>
+       </ul>
+    </div>
+	  <script language="javascript" >
+$(function(){
+	 var index = 0;
+	 $("#operate span").mouseover(function(){
+		index  =  $("#operate span").index(this);
+		showImg(index);
+	});	
+	 //滑入 停止动画，滑出开始动画.
+	 $('#slideshow').hover(function(){
+			  if(MyTime){
+				 clearInterval(MyTime);
+			  }
+	 },function(){
+			  MyTime = setInterval(function(){
+			    showImg(index)
+				index++;
+				if(index==4){index=0;}
+			  } , 3000);
+	 });
+	 //自动开始
+	 var MyTime = setInterval(function(){
+		showImg(index)
+		index++;
+		if(index==4){index=0;}
+	 } , 3000);
+})
+//关键函数：通过控制i ，来显示不通的幻灯片
+function showImg(i){
+		$("#showimg img")
+			.eq(i).stop(true,true).fadeIn(1000)
+			.parent().siblings().find("img").hide();
+		$("#msg li")
+			.eq(i).stop(true,true).fadeIn(1000)
+			.siblings().hide();
+		 $("#operate span")
+			.eq(i).addClass("hov")
+			.siblings().removeClass("hov");
+}
+</script> 
+    <!-- Slideshow end-->
 	</body>
 </html>

@@ -37,7 +37,7 @@
 			</tr>
 		</table>
 		<input type="hidden" value="${userInterestGroup.id }" id="igId" />
-		<div id="div1" style="border-color: #0054AA; height: 1050px">
+		<div id="div1" style="border-color: #0054AA; height: 1000px;">
 			<ul>
 				<li>
 					<a href="#page">${userInterestGroup.groupName }小组成员</a>

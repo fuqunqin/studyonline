@@ -70,13 +70,13 @@ body {
               <tr>
                 <td width="77%" height="25" valign="bottom"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td width="50" height="19"><div align="center"><img src="../images/main_12.gif" width="49" height="19" onclick="window.parent.frames[1].frames[0].document.all('i2').src='home.jsp'" style="cursor: pointer;"></div></td>
+                    <td width="50" height="19"><div align="center"><img src="../images/main_12.gif" width="49" height="19" onclick="window.parent.frames[1].frames[0].document.all('I2').src='home.jsp'" style="cursor: pointer;"></div></td>
                     <td width="50"><div align="center"><img src="../images/main_14.gif" width="48" height="19" onclick="history.go(-1);" style="cursor: pointer;"></div></td>
                     <td width="50"><div align="center"><img src="../images/main_16.gif" width="48" height="19" onclick="history.go(1);" style="cursor: pointer;"></div></td>
                     <td width="50"><div align="center"><img src="../images/main_18.gif" width="48" height="19" onclick="window.parent.frames[1].frames[0].location=window.parent.frames[1].frames[0].location;" style="cursor: pointer;"></div></td>
                     <td width="50"><div align="center"><a href="${pageContext.request.contextPath }/adminExit.do"><img src="../images/main_20.gif" width="48" height="19" style="cursor: pointer;" border="0"></a></div></td>
                     <td width="26"><div align="center"><img src="../images/main_21.gif" width="26" height="19"></div></td>
-                    <td width="100"><div align="center"><img src="../images/main_22.gif" width="98" height="19" onclick="window.parent.frames[1].frames[0].document.all('i2').src='${pageContext.request.contextPath }/admin/selfmanager/querySelf.jsp';" style="cursor: pointer;"></div></td>
+                    <td width="100"><div align="center"><img src="../images/main_22.gif" width="98" height="19" onclick="window.parent.frames[1].frames[0].document.all('I2').src='${pageContext.request.contextPath }/admin/selfmanager/querySelf.jsp';" style="cursor: pointer;"></div></td>
                     <td>&nbsp;</td>
                   </tr>
                 </table></td>

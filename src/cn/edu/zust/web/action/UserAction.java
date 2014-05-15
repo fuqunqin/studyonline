@@ -382,6 +382,15 @@ public class UserAction extends MappingDispatchAction {
 		return mapping.findForward("success");
 	}
 
+	/**
+	 * 下载
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	public ActionForward userDownLoad(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

@@ -10,7 +10,7 @@
 					window.location.href="${pageContext.request.contextPath}/admin/selfmanager/modifySafe.jsp";
 				}else{
 					window.setTimeout('returnHistory()',1000);
-				} 
+				}
 			}
 		</script>
 	</head>

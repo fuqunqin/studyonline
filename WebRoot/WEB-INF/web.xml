@@ -50,14 +50,15 @@
 		</servlet-class>
 		<init-param>
 			<param-name>config</param-name>
-			<param-value>/WEB-INF/struts-config.xml</param-value>
+			<param-value>/WEB-INF/struts-config.xml,/WEB-INF/struts-m-config.xml</param-value>
 		</init-param>
-		<load-on-startup>2</load-on-startup>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>actionServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+
 	<!-- spring和web.xml的结合，达到ss整合 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

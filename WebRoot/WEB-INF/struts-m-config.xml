@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<action-mappings>
+		
+	<!-- 查看学科前沿 -->
+	<action path="/m/querySubjects" parameter="querySubjects"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+	</action>
+	<action path="/m/queryFrontiers" parameter="queryFrontiers"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/more/subjects.jsp#div11"
+				redirect="true">
+			</forward>
+		</action>
+
+
+	</action-mappings>
+
+
+</struts-config>

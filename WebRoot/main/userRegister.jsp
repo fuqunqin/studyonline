@@ -23,7 +23,7 @@
 			href="css/redmond/jquery-ui-1.7.1.custom.css"></link>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				//$("#div1").tabs();
+				$("#div1").tabs();
 				CertificateDwr.query(function(certificates){
 					//alert("弹窗"+certificates);
 					dwr.util.removeAllOptions("certificates");
@@ -102,7 +102,7 @@
 							<td height="5"></td>
 						</tr>
 					</table>
-					<div id="div1" style="border-color: #0054AA; height: 1050px">
+					<div id="div1" style="border-color: #0054AA; height: 1000px">
 						<ul>
 							<li>
 								<a href="#div11">注册</a>

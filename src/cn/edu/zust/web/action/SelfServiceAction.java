@@ -1,5 +1,7 @@
 package cn.edu.zust.web.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
+
+import com.artofsolving.jodconverter.DocumentConverter;
+import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
+import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
+import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
 
 import cn.edu.zust.biz.AccreditationBiz;
 import cn.edu.zust.biz.CertificateExamBiz;
@@ -618,13 +625,24 @@ public class SelfServiceAction extends MappingDispatchAction {
 		return mapping.findForward("success");
 	}
 
+	/**
+	 * 查看资料共享
+	 */
 	public ActionForward queryShare(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String idStr = request.getParameter("id");
 		Integer id = Integer.valueOf(idStr);
 		HttpSession session = request.getSession();
-		session.setAttribute("share", shareBiz.query(id));
+		Share share = shareBiz.query(id);
+		String shareurl =share.getShareUrl();
+		System.out.println(shareurl);
+		//doc docx xls xlsx ppt pptx pdf
+		if(shareurl.indexOf(".doc")>0||shareurl.indexOf(".docx")>0||shareurl.indexOf(".xls")>0||shareurl.indexOf(".xlsx")>0||shareurl.indexOf(".ppt")>0||shareurl.indexOf(".pptx")>0||shareurl.indexOf(".pdf")>0){
+			boolean boo = convert(request,share);
+			session.setAttribute("flex", boo);
+		}
+		session.setAttribute("share", share);
 		Integer previousId = previousNext.queryPreviousData("Share", id);
 		session.setAttribute("previousShare", previousId == null ? null
 				: shareBiz.query(previousId));
@@ -633,4 +651,92 @@ public class SelfServiceAction extends MappingDispatchAction {
 				.query(nextId));
 		return mapping.findForward("success");
 	}
+	
+	private boolean convert(HttpServletRequest request,Share share) throws IOException{
+		String sh = share.getShareUrl();
+		String basepath = request.getSession().getServletContext().getRealPath(File.separator);
+		String sharepath = basepath+"share";
+		String swfpath = basepath+"swf";
+		
+		File shareFile = new File(sharepath+File.separator+share.getShareUrl());
+		final File pdfFile = new File(swfpath+File.separator+share.getShareUrl()+".pdf");
+		final File swfFile = new File(swfpath+File.separator+share.getShareUrl()+".swf");
+		
+		//转换成pdf文件
+		if(shareFile.exists()) {
+			if(!pdfFile.exists()) {
+				OpenOfficeConnection connection = new SocketOpenOfficeConnection(8100);
+				try {
+					connection.connect();
+					DocumentConverter converter = new OpenOfficeDocumentConverter(connection);   
+					converter.convert(shareFile, pdfFile);
+					pdfFile.createNewFile();
+					connection.disconnect();  
+					System.out.println("转换为PDF--路径" + pdfFile.getPath());
+				} catch (java.net.ConnectException e) {
+					e.printStackTrace();
+					System.out.println("OpenOffice服务未启动");
+					throw e;
+				} catch (com.artofsolving.jodconverter.openoffice.connection.OpenOfficeException e) {
+					e.printStackTrace();
+					System.out.println("读取文件失败");
+					throw e;
+				} catch (Exception e){
+					e.printStackTrace();
+					try {
+						throw e;
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			} else {
+				System.out.println("已转换为PDF，无需再次转换");
+			}
+		} else {
+			System.out.println("要转换的文件不存在"+shareFile.getPath());
+			return false;
+		} 
+		
+		
+		//转换成swf文件
+		final Runtime r = Runtime.getRuntime();
+
+		new Thread(){ 
+
+			@Override
+			public void run() {
+				if(!swfFile.exists()){
+					
+					if(pdfFile.exists()) {
+						try {
+							System.out.println("C:/Programs/SWFTools/pdf2swf.exe " + pdfFile.getPath() +
+									" -o " + swfFile.getPath() + " -T 9");
+							Process p=null;
+								p = r.exec("C:/Programs/SWFTools/pdf2swf.exe " + pdfFile.getPath() + " -o " + swfFile.getPath() + " -T 9");
+								p.waitFor();					
+							swfFile.createNewFile();
+							System.out.println("转换为SWF格式：" + swfFile.getPath()+swfFile.getName());
+
+						} catch (Exception e) {
+							e.printStackTrace();
+							try {
+								throw e;
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					} else {
+						System.out.println("PDF文件不存在，无法转换");
+					}
+				} else {
+					System.out.println("已经转为SWF文件，无需再次转换");
+				}
+			}
+			
+		   }.start();
+		
+		return true;
+	}
+	
 }

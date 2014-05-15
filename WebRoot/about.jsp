@@ -9,9 +9,7 @@
 	</head>
 	<body topmargin='0' leftmargin='0'>
 		<%@include file="/main/top.jsp"%>
-		<!-- 
-		<jsp:include page="/main/top.jsp"></jsp:include>
-		 -->
+	
 		<table border='0' cellspacing='0' cellpadding='0' align='center'
 			class='bgcolor'>
 			<tr>

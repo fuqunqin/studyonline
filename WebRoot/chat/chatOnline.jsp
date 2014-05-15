@@ -109,7 +109,7 @@ a:hover {
 
 	<body>
 		<center>
-		<div id="contentDiv" style="width: 600px;height: 500px">
+		<div id="contentDiv" style="width: 610px;height: 500px">
 			<div id="titleDiv" style="width: 470px;height: 20px;margin-top: 10px">
 				<marquee direction="left" scrolldelay="200">
 					${user.loginName }..欢迎来到${chatIg.groupName }兴趣小组聊天室..o(∩_∩)o..
@@ -117,7 +117,7 @@ a:hover {
 			</div>
 			<div id="chatDiv" style="width: 470px">
 				<div id="chatJsp" style="height: 350px; width: 470px;">
-					<textarea rows="25" cols="64" readonly="readonly" id="chatMessages" >${messageList }</textarea>
+					<textarea rows="17" cols="55" readonly="readonly" id="chatMessages" >${messageList }</textarea>
 				</div>
 				<span id="divMess" style="width: 100px;"><b style="color: red;">请输入内容:</b></span>
 				<div style="display: inline; text-align: right; width: 360px">
@@ -126,7 +126,7 @@ a:hover {
 					<a href="#" onclick="doLayout();">退出</a>
 				</div>
 				<div style="width: 470px">
-					<textarea rows="3" cols="64" id="message"></textarea>
+					<textarea rows="3" cols="55" id="message"></textarea>
 				</div>
 				<div style="padding-right: 0px; width: 450px" align="right">
 					<input name="button" type="button" class="longBtn"
@@ -134,7 +134,7 @@ a:hover {
 				</div>
 			</div>
 			<div id="userDiv" style="height: 110px;">
-			<textarea rows="31" cols="12" readonly="readonly"><c:forEach var="u" items="${chatIg.users}">${u.loginName}&#13;</c:forEach></textarea>
+			<textarea rows="22" cols="10" readonly="readonly"><c:forEach var="u" items="${chatIg.users}">${u.loginName}&#13;</c:forEach></textarea>
 			</div>
 		</div>
 		</center>

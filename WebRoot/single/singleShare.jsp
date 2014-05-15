@@ -21,7 +21,7 @@
 				<td height="5"></td>
 			</tr>
 		</table>
-		<div id="div1" style="border-color: #0054AA; height: 1050px">
+		<div id="div1" style="border-color: #0054AA; height: 1000px;">
 			<ul>
 				<li>
 					<a href="#div11">资料共享</a>
@@ -61,8 +61,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="4" height="15px">
+					<td width="5px"></td>
+						<td colspan="4">
+							<c:if test="${flex!=null&&flex}">
+							<iframe src="../flexpaper/flexpaper.jsp?url=${share.shareUrl}" height="480px"width="660px"></iframe>
+							</c:if>
 						</td>
+						<td width="5px"></td>
 					</tr>
 					<tr>
 						<td width="5px"></td>
